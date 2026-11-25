@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 def plot_frequent_itemsets(frequent_itemsets, save_path="outputs/charts/frequent_itemsets.png"):
 
-if not frequent_itemsets:
+   if not frequent_itemsets:
     print("no freq intemsets to plot")
     return
 
@@ -22,12 +22,12 @@ if not frequent_itemsets:
         values.append(support) 
 
     plt.figure(figsize=(10, 5))
-    plt.bar(labels, values, color="steelblue")
+    plt.bar(labels,values,color="steelblue")
     plt.xlabel("Itemset")
     plt.ylabel("Support")
     plt.title("Frequent Itemsets Support")
-    plt.xticks(rotation=45, ha="right")
+    plt.xticks(rotation=45,ha="right")
     plt.tight_layout()
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    os.makedirs(os.path.dirname(save_path),exist_ok=True)
     plt.savefig(save_path)
     plt.show()
