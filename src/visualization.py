@@ -2,10 +2,9 @@ import os
 import matplotlib.pyplot as plt
 
 def plot_frequent_itemsets(frequent_itemsets, save_path="outputs/charts/frequent_itemsets.png"):
-
-   if not frequent_itemsets:
-    print("no freq intemsets to plot")
-    return
+    if not frequent_itemsets:
+        print("no freq itemsets to plot")
+        return
 
     items = list(frequent_itemsets.items())
 
@@ -14,20 +13,29 @@ def plot_frequent_itemsets(frequent_itemsets, save_path="outputs/charts/frequent
             if items[j][1] > items[i][1]:
                 items[i], items[j] = items[j], items[i]
 
-   
-    values = []
     labels = []
+    values = []
+
     for itemset, support in items:
         labels.append(",".join(sorted(itemset)))
-        values.append(support) 
+        values.append(support)
 
     plt.figure(figsize=(10, 5))
-    plt.bar(labels,values,color="steelblue")
+    plt.bar(labels, values, color="steelblue")
     plt.xlabel("Itemset")
     plt.ylabel("Support")
     plt.title("Frequent Itemsets Support")
-    plt.xticks(rotation=45,ha="right")
+    plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
-    os.makedirs(os.path.dirname(save_path),exist_ok=True)
+
+    os.makedirs(os.path.dirname(save_path) or ".", exist_ok=True)
     plt.savefig(save_path)
     plt.show()
+
+
+frequent_itemsets = {
+    frozenset(["milk", "bread"]): 0.45,
+    frozenset(["milk"]): 0.60,
+    frozenset(["bread"]): 0.55,
+}
+plot_frequent_itemsets(frequent_itemsets)
