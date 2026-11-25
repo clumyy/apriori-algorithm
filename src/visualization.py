@@ -30,12 +30,5 @@ def plot_frequent_itemsets(frequent_itemsets, save_path="outputs/charts/frequent
 
     os.makedirs(os.path.dirname(save_path) or ".", exist_ok=True)
     plt.savefig(save_path)
-    plt.show()
+    # plt.show()
 
-
-frequent_itemsets = {
-    frozenset(["milk", "bread"]): 0.45,
-    frozenset(["milk"]): 0.60,
-    frozenset(["bread"]): 0.55,
-}
-plot_frequent_itemsets(frequent_itemsets)
